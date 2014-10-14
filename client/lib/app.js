@@ -1,4 +1,4 @@
-window.app = angular.module('meteor-angular-sapmle', ['angular-meteor', 'ui.router']);
+window.app = angular.module('meteor-angular-sample', ['angular-meteor', 'ui.router']);
 
 app.config(['$locationProvider', '$urlRouterProvider', function($locationProvider, $urlRouterProvider){
   $locationProvider.html5Mode(true);
@@ -6,5 +6,5 @@ app.config(['$locationProvider', '$urlRouterProvider', function($locationProvide
 }])
 
 Meteor.startup(function(){
-  angular.bootstrap(document, ['meteor-angular-sapmle'])
+  angular.bootstrap(document, ['meteor-angular-sample'])
 });
