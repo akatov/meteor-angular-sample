@@ -31,9 +31,9 @@ app.controller('PartiesListCtrl', ['$scope', '$collection', function($scope, $co
   }
 }]);
 
-app.controller("PartyDetailsCtrl", ['$scope', '$stateParams', function($scope, $stateParams){
-  $scope.partyId = $stateParams.partyId;
-}]);
+app.controller("PartyDetailsCtrl", ['$scope', '$stateParams', '$collection', function($scope, $stateParams, $collection){
+  $collection(Parties).bindOne($scope, 'party', $stateParams.partyId, true, true);
+}]);;
 
 Meteor.startup(function(){
   angular.bootstrap(document, ['meteor-angular-sapmle'])
