@@ -3,11 +3,15 @@
 </head>
 
 <body>
+
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
 
   {{> bye}}
+
+  {{> other}}
+
 </body>
 
 <template name="hello">
@@ -18,4 +22,15 @@
 <template name="bye">
   <p>Nothing here [[ 'yet' + '!' ]]</p>
   <p>1 + 2 = [[ 1 + 2 ]]</p>
+</template>
+
+<template name="other">
+  <div ng-controller="PartiesListCtrl">
+    <ul>
+      <li ng-repeat="party in parties">
+        [[party.name]]
+        <p>[[party.description]]</p>
+      </li>
+    </ul>
+  </div>  
 </template>
