@@ -4,13 +4,11 @@
 
 <body>
 
-  <h1>Welcome to Meteor!</h1>
+  <h1>
+    <a href="/parties">Home</a>
+  </h1>
 
-  {{> hello}}
-
-  {{> bye}}
-
-  {{> other}}
+  <div ui-view></div>
 
 </body>
 
@@ -24,7 +22,7 @@
   <p>1 + 2 = [[ 1 + 2 ]]</p>
 </template>
 
-<template name="other">
+<template name="partiesList">
   <div ng-controller="PartiesListCtrl">
     <form>
       <label>Name</label>
@@ -36,7 +34,7 @@
 
     <ul>
       <li ng-repeat="party in parties">
-        [[party.name]]
+        <a href="/parties/[[party._id]]">[[party.name]]</a>
         <p>[[party.description]]</p>
         <button ng-click="remove(party)">X</button>
       </li>
@@ -44,4 +42,8 @@
     <p>Total number of parties: [[parties.length]]</p>
   </div>
 
+</template>
+
+<template name="partyDetails">
+  Here you will see the details of party number: [[ partyId ]]
 </template>

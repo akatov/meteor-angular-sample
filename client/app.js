@@ -1,4 +1,23 @@
-window.app = angular.module('meteor-angular-sapmle', ['angular-meteor']);
+window.app = angular.module('meteor-angular-sapmle', ['angular-meteor', 'ui.router']);
+
+app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $locationProvider){
+
+    $locationProvider.html5Mode(true);
+
+    $stateProvider
+      .state('parties', {
+        url: '/parties',
+        template: UiRouter.template('partiesList'),
+        controller: 'PartiesListCtrl'
+      })
+      .state('partyDetails', {
+        url: '/parties/:partyId',
+        template: UiRouter.template('partyDetails'),
+        controller: 'PartyDetailsCtrl'
+      });
+
+      $urlRouterProvider.otherwise("/parties");
+}]);
 
 app.controller('PartiesListCtrl', ['$scope', '$collection', function($scope, $collection){
   $collection(Parties).bind($scope, 'parties', true, true);
@@ -10,7 +29,11 @@ app.controller('PartiesListCtrl', ['$scope', '$collection', function($scope, $co
     console.log('removing', party);
     $scope.parties.splice($scope.parties.indexOf(party), 1);
   }
-}])
+}]);
+
+app.controller("PartyDetailsCtrl", ['$scope', '$stateParams', function($scope, $stateParams){
+  $scope.partyId = $stateParams.partyId;
+}]);
 
 Meteor.startup(function(){
   angular.bootstrap(document, ['meteor-angular-sapmle'])
