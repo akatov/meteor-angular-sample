@@ -1,14 +1,7 @@
 window.app = angular.module('meteor-angular-sapmle', ['angular-meteor']);
 
-app.controller('PartiesListCtrl', ['$scope', function($scope){
-  $scope.parties = [
-    {'name': 'Party 0',
-     'description': 'description 0'},
-    {'name': 'Party 1',
-     'description': 'description 1'},
-    {'name': 'Party 2',
-     'description': 'description 2'},
-  ]
+app.controller('PartiesListCtrl', ['$scope', '$collection', function($scope, $collection){
+  $collection(Parties).bind($scope, 'parties', true, true);
 }])
 
 Meteor.startup(function(){
