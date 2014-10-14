@@ -26,12 +26,22 @@
 
 <template name="other">
   <div ng-controller="PartiesListCtrl">
+    <form>
+      <label>Name</label>
+      <input ng-model="newParty.name">
+      <label>Description</label>
+      <input ng-model="newParty.description">
+      <button ng-click="add(newParty)">Add</button>
+    </form>
+
     <ul>
       <li ng-repeat="party in parties">
         [[party.name]]
         <p>[[party.description]]</p>
+        <button ng-click="remove(party)">X</button>
       </li>
     </ul>
     <p>Total number of parties: [[parties.length]]</p>
-  </div>  
+  </div>
+
 </template>
